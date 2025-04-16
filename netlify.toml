@@ -1,6 +1,6 @@
 [build]
   publish = "dist"
-  command = "yarn run build && yarn run setup-db"  # Add SQLite setup
+  command = "yarn install && yarn build && yarn setup-db"  # Add SQLite setup
   functions = "functions"
   environment = { NODE_VERSION = "18" }  # Use Node 18 for better SQLite support
 

@@ -31,7 +31,7 @@
     "coveralls": "nyc report --reporter=lcov",
     "test": "npm run lint && nyc ava",
     "lint": "eslint \"{functions,src,test}/**/*.js\"",
-    "setup-db": "mkdir -p /tmp && npx better-sqlite3 /tmp/ackee.db 'CREATE TABLE IF NOT EXISTS records (id TEXT PRIMARY KEY, data TEXT)'"
+    "setup-db": "node scripts/init-db.js"
   },
   "dependencies": {
     "@graphql-tools/merge": "^8.3.14",
