@@ -1,18 +1,17 @@
 [build]
   publish = "dist"
-  command = "yarn build"
-  functions = "functions/"
-  environment = { NODE_VERSION = "14.19.0", NODE_ENV = "production" }
+  command = "yarn build && yarn setup-db"  # Add SQLite setup
+  functions = "functions"
+  environment = { NODE_VERSION = "18" }  # Use Node 18 for better SQLite support
 
 [[redirects]]
-  from = "/api"
-  to = "/.netlify/functions/api"
+  from = "/api/*"
+  to = "/.netlify/functions/api/:splat"
   status = 200
   force = true
 
 [template.environment]
-  ACKEE_MONGODB = "ACKEE_MONGODB"
-  ACKEE_USERNAME = "ACKEE_USERNAME"
-  ACKEE_PASSWORD = "ACKEE_PASSWORD"
-  ACKEE_ALLOW_ORIGIN = "ACKEE_ALLOW_ORIGIN"
-  ACKEE_AUTO_ORIGIN = "ACKEE_AUTO_ORIGIN"
+  # SQLite config (file path in Netlify's writable /tmp)
+  ACKEE_SQLITE_PATH = "/tmp/ackee.db"  
+  ACKEE_USERNAME = "admin"             # Change these!
+  ACKEE_PASSWORD = "admin"
