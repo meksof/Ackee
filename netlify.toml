@@ -1,17 +1,11 @@
 [build]
-  publish = "dist"
-  command = "npm install && npm run build && npm run setup-db"  # Add SQLite setup
+  command = "npm run build"
   functions = "functions"
-  environment = { NODE_VERSION = "18" }  # Use Node 18 for better SQLite support
 
-[[redirects]]
-  from = "/api/*"
-  to = "/.netlify/functions/api/:splat"
-  status = 200
-  force = true
+[build.environment]
+  NODE_VERSION = "18"
 
 [template.environment]
-  # SQLite config (file path in Netlify's writable /tmp)
-  ACKEE_SQLITE_PATH = "/tmp/ackee.db"  
-  ACKEE_USERNAME = "admin"             # Change these!
+  ACKEE_MONGODB = "mongodb+srv://..."
+  ACKEE_USERNAME = "admin"
   ACKEE_PASSWORD = "admin"
