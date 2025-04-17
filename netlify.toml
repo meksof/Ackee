@@ -1,0 +1,15 @@
+[build]
+  command = "yarn build"
+  functions = "functions"
+  publish = "dist"
+
+# Redirects for API endpoints
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/api/:splat"
+  status = 200
+  force = true
+
+# Required for MongoDB Atlas
+[functions]
+  node_bundler = "esbuild"  # Faster cold starts
