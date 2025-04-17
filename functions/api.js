@@ -1,12 +1,9 @@
-// Use the new Ackee initialization method
-const { Ackee } = require('ackee-tracker');
+'use strict'
 
-exports.handler = async (event, context) => {
-  const ackee = new Ackee({
-    database: {
-      url: process.env.ACKEE_MONGODB // MongoDB Atlas connection string
-    }
-  });
-
-  return ackee.server(event, context);
-};
+/**
+ * A serverless function handler for the '/api' route, for use with Netlify.
+ *
+ * See:
+ *  - https://docs.netlify.com/functions/overview/
+ */
+exports.handler = require('../src/serverless').handler
